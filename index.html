@@ -23,15 +23,16 @@
     <body>
     <script>
         
-       function myFunction(){
+       function myFunction(event){
 
+           
            var email = document.getElementById("email").value;
            var pass = document.getElementById("pass").value;
            var regemail = /^[A-Za-z0-9_.]{3,}@[A-Za-z]{1,}.[A-Za-z.]{3,6}$/;
 
            if(regemail.test(email)){
 
-            document.getElementById("usererror").innerHTML = " ";
+        document.getElementById("usererror").innerHTML = " ";
         const xhr = new XMLHttpRequest();
         xhr.onload = function(){
             alert(this.responseText);
@@ -40,8 +41,8 @@
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send("email="+email+"&password="+pass);
        
-        alert("all credintials are correct");
        
+       return false;
     }
     else{
         document.getElementById("usererror").innerHTML = "*wrong email";
