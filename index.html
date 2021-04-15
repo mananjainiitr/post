@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            body{
+                background-color: rgb(17, 247, 235)
+            }
+            #table{
+                
+                width:100vw;
+            }
+            tr{
+                background-color: rgb(253, 251, 145);
+            }
+            #heading{
+                background-color: white;
+                height : 50px;
+            }
+            
+        </style>
+    </head>
+    <body>
+    <script>
+        
+       function myFunction(){
+
+           var email = document.getElementById("email").value;
+           var pass = document.getElementById("pass").value;
+           var regemail = /^[A-Za-z0-9_.]{3,}@[A-Za-z]{1,}.[A-Za-z.]{3,6}$/;
+
+           if(regemail.test(email)){
+
+            document.getElementById("usererror").innerHTML = " ";
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            alert(this.responseText);
+        };
+        xhr.open("POST" ,"https://reqres.in/api/login" ,true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("email="+email+"&password="+pass);
+       
+        alert("all credintials are correct");
+       
+    }
+    else{
+        document.getElementById("usererror").innerHTML = "*wrong email";
+        return false;
+    }
+
+    };
+    
+    </script>
+       <form onsubmit = "return myFunction()">
+        <label>Name</label><span style = "color:red;"id = usererror></span><br>   
+        <input id = "email" type = text ><br>
+        <label>Password</label><span style = "color:red;"id = passworderror></span><br>
+           <input id = "pass" type = "text"><br>
+           <input id = "sub" type = "submit" >
+       </form>
+             
+
+    </body>
+</html>
